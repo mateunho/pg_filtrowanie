@@ -34,7 +34,7 @@ void ImagesDialog::OpenImage(QString _filename)
 
     // to do wyswietlenia
     QImage imgOriginal(_filename);
-    imgOriginal = imgOriginal.scaledToWidth(320);
+    imgOriginal = imgOriginal.scaledToWidth(500);
     ui->lbl_originalImg->setPixmap(QPixmap::fromImage(imgOriginal));
 }
 
@@ -56,12 +56,12 @@ void ImagesDialog::SetFilter(cv::Mat _filter)
 
 void ImagesDialog::ApplyFilter()
 {
-    //m_engine->Filter2D(m_imgOriginal, m_imgFiltered, m_filter);
-    //*/
-    cv::Mat filter;
-    cv::normalize(m_filter, filter, 1, 0, cv::NORM_L1);
-    m_engine->Filter2D(m_imgOriginal, m_imgFiltered, filter);
-    //*/
+    cv::Scalar sum = cv::sum(m_filter); // suma elementow macierzy filtru
+    // Scalar jest 4 kanalowym wektorem, a macierz filtru ma tylko jeden kanal
+    // dlatego do normalizacji pobieramy element [0]
+    cv::Mat filter = m_filter * 1./sum[0]; // normalizacja
+
+    m_engine->Filter2D(m_imgOriginal, m_imgFiltered, filter); // filtrowanie
 
     if(true == m_imgFiltered.empty()) {
         return;
@@ -72,7 +72,7 @@ void ImagesDialog::ApplyFilter()
                        m_imgFiltered.rows,
                        m_imgFiltered.step,
                        QImage::Format_RGB888);
-    imgFiltered = imgFiltered.scaledToWidth(320);
+    imgFiltered = imgFiltered.scaledToWidth(500);
     ui->lbl_filteredImg->setPixmap(QPixmap::fromImage(imgFiltered));
 }
 
