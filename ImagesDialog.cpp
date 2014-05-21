@@ -59,7 +59,8 @@ void ImagesDialog::ApplyFilter()
     cv::Scalar sum = cv::sum(m_filter); // suma elementow macierzy filtru
     // Scalar jest 4 kanalowym wektorem, a macierz filtru ma tylko jeden kanal
     // dlatego do normalizacji pobieramy element [0]
-    cv::Mat filter = m_filter * 1./sum[0]; // normalizacja
+    double suma = (sum[0] ? sum[0] : 1.); // nie dziel przez zero!
+    cv::Mat filter = m_filter * 1./suma; // normalizacja
 
     m_engine->Filter2D(m_imgOriginal, m_imgFiltered, filter); // filtrowanie
 
