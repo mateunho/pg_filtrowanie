@@ -38,3 +38,8 @@ LIBS += -LC:\\opencv-248\\opencv-build\\install\\x64\\mingw\\bin \
     libopencv_imgproc248 \
     libopencv_features2d248 \
     libopencv_calib3d248
+
+OTHER_FILES +=
+
+RESOURCES += \
+    icons.qrc

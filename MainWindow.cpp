@@ -68,6 +68,7 @@ void MainWindow::on_actionUser_manual_triggered()
     QString repeat = "[repeat]";
     QString nl = "\n";
     QMessageBox msgBox;
+    msgBox.setIconPixmap(QPixmap(":/icons/pg.bmp"));
     msgBox.addButton(QMessageBox::Close);
     msgBox.setWindowTitle("Mini tutorial");
     msgBox.setText(brief);
@@ -86,11 +87,14 @@ void MainWindow::on_actionAbout_triggered()
     QString author = "Author: Mateusz Kacprzak";
     QString faculty = "wfis.uni.lodz.pl 2014";
     QString nl = "\n";
-    QMessageBox::information(this,
-                             "About",
-                             brief +nl+nl+
-                             author +nl+
-                             faculty);
+    QMessageBox msgBox;
+    msgBox.setIconPixmap(QPixmap(":/icons/pg.bmp"));
+    msgBox.addButton(QMessageBox::Close);
+    msgBox.setWindowTitle("About");
+    msgBox.setText(brief +nl+nl+
+                   author +nl+
+                   faculty);
+    msgBox.exec();
 }
 
 

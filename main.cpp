@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     ProcessingEngine e;
+    w.setWindowIcon(QIcon(":/icons/pg.bmp"));
     w.setWindowState(Qt::WindowActive | Qt::WindowMaximized);
     w.setWindowTitle("Filtrowanie liniowe obrazów - Projekt grupowy: M.Kacprzak, P.Dymecki");
     w.SetEngine(&e);
