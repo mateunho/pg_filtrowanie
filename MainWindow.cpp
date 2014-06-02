@@ -83,17 +83,23 @@ void MainWindow::on_actionUser_manual_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
+    QString nl = "\n";
     QString brief = "This application was designed for linear filtering of greyscale or color images.";
     QString author = "Author: Mateusz Kacprzak";
     QString faculty = "wfis.uni.lodz.pl 2014";
-    QString nl = "\n";
+    QString uses = "Stworzono przy wykorzystaniu";
+    QString qt = "Qt 5.2.0 (http://qt-project.org/)";
+    QString opencv = "OpenCV 2.4.8 (http://opencv.org/)";
     QMessageBox msgBox;
     msgBox.setIconPixmap(QPixmap(":/icons/pg.bmp"));
     msgBox.addButton(QMessageBox::Close);
     msgBox.setWindowTitle("About");
     msgBox.setText(brief +nl+nl+
                    author +nl+
-                   faculty);
+                   faculty +nl+nl+
+                   uses +nl+
+                   qt +nl+
+                   opencv);
     msgBox.exec();
 }
 
